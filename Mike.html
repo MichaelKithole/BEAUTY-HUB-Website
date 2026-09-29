@@ -1,0 +1,2174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty Hub</title>
+
+    <!-- =========================
+         CSS
+    ========================== -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f5f5;
+            color: #222;
+        }
+
+        /* HEADER */
+        header {
+            background: #ffffff;
+            padding: 15px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #e91e63;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #222;
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 600px;
+            display: flex;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 6px 0 0 6px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .search-box button {
+            padding: 13px 20px;
+            border: none;
+            background: #e91e63;
+            color: white;
+            cursor: pointer;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .cart-button {
+            background: #222;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        /* NAVIGATION */
+        nav {
+            background: #222;
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            padding: 14px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: #ff4081;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 420px;
+            background: linear-gradient(135deg, #ffe0ec, #ffffff);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 50px 8%;
+            gap: 40px;
+        }
+
+        .hero-text {
+            max-width: 550px;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            color: #222;
+            margin-bottom: 15px;
+        }
+
+        .hero-text h1 span {
+            color: #e91e63;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .shop-btn {
+            background: #e91e63;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .shop-btn:hover {
+            background: #c2185b;
+        }
+
+        /* HERO IMAGE */
+        .hero-image {
+            width: 380px;
+            height: 280px;
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            overflow: hidden;
+        }
+
+        .hero-image svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* PRODUCTS */
+        .section {
+            padding: 50px 6%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #666;
+        }
+
+        .day-title {
+            margin: 35px 0 20px;
+            font-size: 23px;
+            color: #e91e63;
+            border-left: 5px solid #e91e63;
+            padding-left: 12px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        /* PRODUCT IMAGE */
+      
+        .product-image {
+            height: 190px;
+            background: #fce4ec;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .product-info {
+            padding: 18px;
+        }
+
+        .product-info h3 {
+            margin-bottom: 8px;
+        }
+
+        .price {
+            color: #e91e63;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .variable-price {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .add-btn {
+            width: 100%;
+            padding: 11px;
+            background: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .add-btn:hover {
+            background: #c2185b;
+        }
+
+        /* CART */
+        .cart-section,
+        .checkout-section,
+        .receipt-section {
+            display: none;
+            padding: 50px 7%;
+            background: white;
+            min-height: 500px;
+        }
+
+        .cart-section.active,
+        .checkout-section.active,
+        .receipt-section.active {
+            display: block;
+        }
+
+        .cart-container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 18px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-info h3 {
+            margin-bottom: 5px;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quantity button {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: #e91e63;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .remove-btn {
+            border: none;
+            background: #d32f2f;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .cart-total {
+            text-align: right;
+            margin-top: 25px;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .checkout-btn {
+            display: block;
+            margin: 25px 0 0 auto;
+            padding: 14px 25px;
+            background: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 60px;
+            color: #777;
+        }
+
+        /* FORMS */
+        .form-container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .payment-box {
+            background: #f8f8f8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .payment-box h3 {
+            margin-bottom: 15px;
+        }
+
+        .total-box {
+            background: #222;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+        }
+
+        .place-order {
+            width: 100%;
+            padding: 15px;
+            background: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .mpesa-info {
+            display: none;
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            color: #1b5e20;
+        }
+
+        /* RECEIPT */
+        .receipt {
+            max-width: 700px;
+            margin: auto;
+            border: 1px solid #ddd;
+            padding: 30px;
+            background: white;
+        }
+
+        .receipt-header {
+            text-align: center;
+            border-bottom: 2px solid #222;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .receipt-header h2 {
+            color: #e91e63;
+        }
+
+        .customer-details {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .receipt-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .receipt-table th,
+        .receipt-table td {
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .receipt-total {
+            text-align: right;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .status {
+            padding: 10px;
+            background: #e8f5e9;
+            color: #1b5e20;
+            text-align: center;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .print-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 25px;
+            background: #222;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 7px;
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            header {
+                flex-wrap: wrap;
+            }
+
+            .search-box {
+                order: 3;
+                flex-basis: 100%;
+            }
+
+            nav {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 36px;
+            }
+
+            .hero-image {
+                width: 100%;
+                max-width: 380px;
+            }
+
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .cart-total {
+                text-align: left;
+            }
+
+            .checkout-btn {
+                margin-left: 0;
+            }
+        }
+
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+
+            #receiptContent,
+            #receiptContent * {
+                visibility: visible;
+            }
+
+            #receiptContent {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+
+            .print-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+    <header>
+
+        <div class="logo">
+            Beauty <span>Hub</span>
+        </div>
+
+        <div class="search-box">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search for products..."
+                onkeyup="searchProducts()"
+            >
+            <button onclick="searchProducts()">Search</button>
+        </div>
+
+        <button class="cart-button" onclick="showCart()">
+            🛒 Cart (<span id="cartCount">0</span>)
+        </button>
+
+    </header>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+    <nav>
+        <a onclick="showHome()">Home</a>
+        <a onclick="scrollToProducts()">Products</a>
+        <a onclick="showCart()">Cart</a>
+        <a onclick="goToCheckout()">Checkout</a>
+    </nav>
+
+
+    <!-- =========================
+         HOME
+    ========================== -->
+    <main id="homePage">
+
+        <!-- HERO -->
+        <section class="hero">
+
+            <div class="hero-text">
+                <h1>
+                    Welcome to <span>Beauty Hub</span>
+                </h1>
+
+                <p>
+                    Discover beauty products, makeup, accessories
+                    and fashion all in one place.
+                </p>
+
+                <button class="shop-btn" onclick="scrollToProducts()">
+                    Shop Now
+                </button>
+            </div>
+
+
+            <!--HERO IMAGE=========================== -->
+            <div class="hero-image">
+
+                <img src="C:\Users\USER\Downloads\Beaty Hub logo.jpg">
+
+                    <rect width="400"
+                          height="280"
+                          fill="#fce4ec"/>
+
+                    <circle cx="200"
+                            cy="120"
+                            r="80"
+                            fill="#f8bbd0"/>
+
+                    <rect x="130"
+                          y="145"
+                          width="180"
+                          height="90"
+                          rx="15"
+                          fill="#e91e63"/>
+
+                    <text x="200"
+                          y="180"
+                          text-anchor="middle"
+                          fill="white"
+                          font-size="25"
+                          font-weight="bold">
+                        BEAUTY HUB
+                    </text>
+
+                </svg>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PRODUCTS
+        ========================== -->
+        <section class="section" id="products">
+
+            <div class="section-title">
+                <h2>Our Products</h2>
+                <p>Shop beauty, fashion and accessories.</p>
+            </div>
+
+
+            <!-- MONDAY -->
+            <h3 class="day-title">
+                Monday - Lotions
+            </h3>
+
+            <div class="products-grid">
+
+                <!-- PRODUCT 1 -->
+                <div class="product-card"
+                     data-name="Versman Lotion">
+
+                    <!-- Versman Lotion image -->
+                    <div class="product-image">
+
+                        <img src="C:\Users\USER\Downloads\verman.jpg">
+
+                            <rect width="300"
+                                  height="190"
+                                  fill="#fce4ec"/>
+
+                            <rect x="110"
+                                  y="35"
+                                  width="80"
+                                  height="120"
+                                  rx="10"
+                                  fill="#e91e63"/>
+
+                            <text x="150"
+                                  y="105"
+                                  text-anchor="middle"
+                                  fill="white"
+                                  font-size="18">
+                                LOTION
+                            </text>
+
+                        </svg>
+
+                    </div>
+
+                    <div class="product-info">
+                        <h3>Versman Lotion</h3>
+
+                        <div class="price">
+                            KSh 380
+                        </div>
+
+                        <button class="add-btn"
+                                onclick="addToCart('Versman Lotion',380)">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+
+                <!-- PRODUCT 2 -->
+                <div class="product-card"
+                     data-name="Nice & Lovely">
+
+                    <!-- Nice & Lovely image -->
+                    <div class="product-image">
+
+                        <img src="C:\Users\USER\Downloads\Nice & lovely.jpg">
+
+                            <rect width="300"
+                                  height="190"
+                                  fill="#fff0f5"/>
+
+                            <rect x="115"
+                                  y="35"
+                                  width="70"
+                                  height="120"
+                                  rx="8"
+                                  fill="#ff80ab"/>
+
+                            <text x="150"
+                                  y="100"
+                                  text-anchor="middle"
+                                  fill="white"
+                                  font-size="16">
+                                NICE
+                            </text>
+
+                            <text x="150"
+                                  y="122"
+                                  text-anchor="middle"
+                                  fill="white"
+                                  font-size="13">
+                                & LOVELY
+                            </text>
+
+                        </svg>
+
+                    </div>
+
+                    <div class="product-info">
+                        <h3>Nice & Lovely</h3>
+
+                        <div class="price">
+                            KSh 280
+                        </div>
+
+                        <button class="add-btn"
+                                onclick="addToCart('Nice & Lovely',280)">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+
+                <!-- PRODUCT 3 -->
+                <div class="product-card"
+                     data-name="Amara Lotion">
+
+                    <!--Amara Lotion image-->
+                    <div class="product-image">
+
+                      <img src="C:\Users\USER\Downloads\amara.jpg">
+
+                            <rect width="300"
+                                  height="190"
+                                  fill="#f8bbd0"/>
+
+                            <rect x="110"
+                                  y="35"
+                                  width="80"
+                                  height="120"
+                                  rx="10"
+                                  fill="#ad1457"/>
+
+                            <text x="150"
+                                  y="110"
+                                  text-anchor="middle"
+                                  fill="white"
+                                  font-size="20">
+                                AMARA
+                            </text>
+
+                        </svg>
+
+                    </div>
+
+                    <div class="product-info">
+                        <h3>Amara Lotion</h3>
+
+                        <div class="price">
+                            KSh 180
+                        </div>
+
+                        <button class="add-btn"
+                                onclick="addToCart('Amara Lotion',180)">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- TUESDAY -->
+            <h3 class="day-title">
+                Tuesday - Makeup
+            </h3>
+
+            <div class="products-grid">
+
+                <div class="product-card"
+                     data-name="Makeup Kit">
+
+                    <!-- Makeup kit  image -->
+                    <div class="product-image">
+
+                        <img src="C:\Users\USER\Downloads\Makeup kit.jpg">
+
+                            <rect width="300"
+                                  height="190"
+                                  fill="#f3e5f5"/>
+
+                            <circle cx="100"
+                                    cy="95"
+                                    r="35"
+                                    fill="#ce93d8"/>
+
+                            <circle cx="150"
+                                    cy="95"
+                                    r="35"
+                                    fill="#ab47bc"/>
+
+                            <circle cx="200"
+                                    cy="95"
+                                    r="35"
+                                    fill="#8e24aa"/>
+
+                            <text x="150"
+                                  y="170"
+                                  text-anchor="middle"
+                                  font-size="20">
+                                MAKEUP KIT
+                            </text>
+
+                        </svg>
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3>Makeup Kit</h3>
+
+                        <p class="variable-price">
+                            Price varies by product
+                        </p>
+
+                        <button class="add-btn"
+                                onclick="addVariableProduct('Makeup Kit')">
+                            Add to Cart
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- WEDNESDAY -->
+            <h3 class="day-title">
+                Wednesday - Accessories
+            </h3>
+
+            <div class="products-grid">
+
+                <div class="product-card"
+                     data-name="Beauty Accessories">
+
+                    <!-- Beauty Accessories image -->
+                    <div class="product-image">
+
+                        <img src="C:\Users\USER\Downloads\Fashion accessories.jpg">
+
+                            <rect width="300"
+                                  height="190"
+                                  fill="#fff3e0"/>
+
+                            <circle cx="100"
+                                    cy="90"
+                                    r="35"
+                                    fill="#ffb74d"/>
+
+                            <circle cx="150"
+                                    cy="90"
+                                    r="35"
+                                    fill="#ff9800"/>
+
+                            <circle cx="200"
+                                    cy="90"
+                                    r="35"
+                                    fill="#f57c00"/>
+
+                            <text x="150"
+                                  y="160"
+                                  text-anchor="middle"
+                                  font-size="18">
+                                ACCESSORIES
+                            </text>
+
+                        </svg>
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3>Beauty Accessories</h3>
+
+                        <p class="variable-price">
+                            Price varies by product
+                        </p>
+
+                        <button class="add-btn"
+                                onclick="addVariableProduct('Beauty Accessories')">
+                            Add to Cart
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- THURSDAY -->
+            <h3 class="day-title">
+                Thursday - Clothes
+            </h3>
+
+            <div class="products-grid">
+
+                <div class="product-card"
+                     data-name="Fashion Clothes">
+
+                    <!-- Fashion Clothes image -->
+                    <div class="product-image">
+
+                        <img src="C:\Users\USER\Downloads\fashion Clothes.jpg">
+
+                            <rect width="300"
+                                  height="190"
+                                  fill="#e3f2fd"/>
+
+                            <path d="M110 45 L145 25 L155 50
+                                     L145 70 L125 65
+                                     L110 150 L190 150
+                                     L175 65 L155 70
+                                     L145 50 L155 25
+                                     L190 45 L215 75
+                                     L190 95 L175 80
+                                     L180 150 L120 150
+                                     L125 80 L110 95
+                                     L85 75 Z"
+                                  fill="#2196f3"/>
+
+                            <text x="150"
+                                  y="175"
+                                  text-anchor="middle"
+                                  font-size="16">
+                                FASHION
+                            </text>
+
+                        </svg>
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3>Fashion Clothes</h3>
+
+                        <p class="variable-price">
+                            Price varies by product
+                        </p>
+
+                        <button class="add-btn"
+                                onclick="addVariableProduct('Fashion Clothes')">
+                            Add to Cart
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         CART
+    ========================== -->
+    <section class="cart-section" id="cartSection">
+
+        <div class="cart-container">
+
+            <h2>Shopping Cart</h2>
+
+            <div id="cartItems"></div>
+
+            <div class="cart-total">
+                Total: KSh <span id="cartTotal">0</span>
+            </div>
+
+            <button class="checkout-btn"
+                    onclick="goToCheckout()">
+                Proceed to Checkout
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CHECKOUT
+    ========================== -->
+    <section class="checkout-section"
+             id="checkoutSection">
+
+        <div class="form-container">
+
+            <h2>Checkout</h2>
+
+
+            <!-- CUSTOMER DETAILS -->
+            <div class="form-group">
+
+                <label>
+                    Full Name
+                </label>
+
+                <input type="text"
+                       id="customerName"
+                       placeholder="Enter your full name">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Phone Number
+                </label>
+
+                <input type="tel"
+                       id="customerPhone"
+                       placeholder="07XXXXXXXX">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Email Address
+                </label>
+
+                <input type="email"
+                       id="customerEmail"
+                       placeholder="example@gmail.com">
+
+            </div>
+
+
+            <!-- COUNTY -->
+            <div class="form-group">
+
+                <label>
+                    County
+                </label>
+
+                <select id="customerCounty">
+
+                    <option value="">
+                        Select County
+                    </option>
+
+                    <option>Mombasa</option>
+                    <option>Kwale</option>
+                    <option>Kilifi</option>
+                    <option>Tana River</option>
+                    <option>Lamu</option>
+                    <option>Taita Taveta</option>
+                    <option>Garissa</option>
+                    <option>Wajir</option>
+                    <option>Mandera</option>
+                    <option>Marsabit</option>
+                    <option>Isiolo</option>
+                    <option>Meru</option>
+                    <option>Tharaka Nithi</option>
+                    <option>Embu</option>
+                    <option>Kitui</option>
+                    <option>Machakos</option>
+                    <option>Makueni</option>
+                    <option>Nyandarua</option>
+                    <option>Nyeri</option>
+                    <option>Kirinyaga</option>
+                    <option>Murang'a</option>
+                    <option>Kiambu</option>
+                    <option>Turkana</option>
+                    <option>West Pokot</option>
+                    <option>Samburu</option>
+                    <option>Trans Nzoia</option>
+                    <option>Uasin Gishu</option>
+                    <option>Elgeyo Marakwet</option>
+                    <option>Nandi</option>
+                    <option>Baringo</option>
+                    <option>Laikipia</option>
+                    <option>Nakuru</option>
+                    <option>Narok</option>
+                    <option>Kajiado</option>
+                    <option>Kericho</option>
+                    <option>Bomet</option>
+                    <option>Kakamega</option>
+                    <option>Vihiga</option>
+                    <option>Bungoma</option>
+                    <option>Busia</option>
+                    <option>Siaya</option>
+                    <option>Kisumu</option>
+                    <option>Homa Bay</option>
+                    <option>Migori</option>
+                    <option>Kisii</option>
+                    <option>Nyamira</option>
+                    <option>Nairobi</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- PAYMENT -->
+            <div class="payment-box">
+
+                <h3>
+                    Payment Method
+                </h3>
+
+                <div class="form-group">
+
+                    <select id="paymentMethod"
+                            onchange="changePaymentMethod()">
+
+                        <option value="">
+                            Select Payment Method
+                        </option>
+
+                        <option value="M-Pesa">
+                            M-Pesa
+                        </option>
+
+                        <option value="Card">
+                            Card
+                        </option>
+
+                        <option value="Cash">
+                            Cash
+                        </option>
+
+                        <option value="Pay on Delivery">
+                            Pay on Delivery
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- MPESA -->
+                <div class="mpesa-info"
+                     id="mpesaInfo">
+
+                    <strong>
+                        M-Pesa Payment
+                    </strong>
+
+                    <p>
+                        Enter the buyer's M-Pesa phone number.
+                    </p>
+
+                    <p>
+                       The buyer should check their phone for the official M-Pesa prompt and enter their M-Pesa PIN on the phone
+                    </p>
+
+                    <div class="form-group"
+                         style="margin-top:15px;">
+
+                        <input type="tel"
+                               id="mpesaPhone"
+                               placeholder="07XXXXXXXX">
+
+                    </div>
+
+                    <button type="button"
+                            class="add-btn"
+                            onclick="requestMpesaPayment()">
+
+                        Request M-Pesa Payment
+
+                    </button>
+
+                </div>
+
+
+                <!-- AMOUNT PAID -->
+                <div class="form-group">
+
+                    <label>
+                        Amount Paid
+                    </label>
+
+                    <input type="number"
+                           id="amountPaid"
+                           placeholder="Enter amount paid"
+                           oninput="calculateBalance()">
+
+                </div>
+
+            </div>
+
+
+            <!-- TOTAL -->
+            <div class="total-box">
+
+                <div class="total-row">
+
+                    <span>
+                        Order Total
+                    </span>
+
+                    <strong>
+                        KSh <span id="checkoutTotal">0</span>
+                    </strong>
+
+                </div>
+
+
+                <div class="total-row">
+
+                    <span>
+                        Amount Paid
+                    </span>
+
+                    <strong>
+                        KSh <span id="displayAmountPaid">0</span>
+                    </strong>
+
+                </div>
+
+
+                <div class="total-row">
+
+                    <span>
+                        Balance
+                    </span>
+
+                    <strong>
+                        KSh <span id="balance">0</span>
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <button class="place-order"
+                    onclick="placeOrder()">
+
+                Place Order
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         RECEIPT
+    ========================== -->
+    <section class="receipt-section"
+             id="receiptSection">
+
+        <div class="receipt"
+             id="receiptContent">
+
+            <div class="receipt-header">
+
+                <h2>
+                    BEAUTY HUB
+                </h2>
+
+                <p>
+                    Beauty, Fashion & Accessories
+                </p>
+
+                <p>
+                    <strong>
+                        Order Receipt
+                    </strong>
+                </p>
+
+            </div>
+
+
+            <div id="receiptDetails"></div>
+
+        </div>
+
+        <button class="print-btn"
+                onclick="printReceipt()">
+
+            🖨 Print Receipt
+
+        </button>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+    <footer>
+
+        <p>
+            <strong>Beauty Hub</strong>
+        </p>
+
+        <p>
+            Your beauty and fashion marketplace.
+        </p>
+
+        <p>
+            © 2026 Beauty Hub. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+    <script>
+
+        /* =========================
+           SHOPPING CART
+        ========================== */
+
+        let cart = [];
+
+
+        /* ADD FIXED PRICE PRODUCT */
+        function addToCart(name, price) {
+
+            let existingProduct = cart.find(
+                item => item.name === name
+            );
+
+            if (existingProduct) {
+
+                existingProduct.quantity++;
+
+            } else {
+
+                cart.push({
+                    name: name,
+                    price: price,
+                    quantity: 1
+                });
+
+            }
+
+            updateCart();
+
+            alert(name + " added to cart!");
+
+        }
+
+
+        /* ADD VARIABLE PRICE PRODUCT */
+        function addVariableProduct(name) {
+
+            let price = prompt(
+                "Enter the current price for " + name + ":"
+            );
+
+            if (price === null || price === "") {
+                return;
+            }
+
+            price = Number(price);
+
+            if (isNaN(price) || price <= 0) {
+
+                alert("Please enter a valid price.");
+
+                return;
+            }
+
+            cart.push({
+                name: name,
+                price: price,
+                quantity: 1
+            });
+
+            updateCart();
+
+            alert(name + " added to cart.");
+
+        }
+
+
+        /* UPDATE CART */
+        function updateCart() {
+
+            const cartItems =
+                document.getElementById("cartItems");
+
+            const cartCount =
+                document.getElementById("cartCount");
+
+            const cartTotal =
+                document.getElementById("cartTotal");
+
+            let totalQuantity = 0;
+            let totalPrice = 0;
+
+
+            if (cart.length === 0) {
+
+                cartItems.innerHTML = `
+                    <div class="empty-cart">
+                        <h3>Your cart is empty.</h3>
+                        <p>Add products to your cart to continue.</p>
+                    </div>
+                `;
+
+            } else {
+
+                cartItems.innerHTML = "";
+
+                cart.forEach((item, index) => {
+
+                    let itemTotal =
+                        item.price * item.quantity;
+
+                    totalQuantity += item.quantity;
+                    totalPrice += itemTotal;
+
+
+                    cartItems.innerHTML += `
+
+                        <div class="cart-item">
+
+                            <div class="cart-item-info">
+
+                                <h3>
+                                    ${item.name}
+                                </h3>
+
+                                <p>
+                                    KSh ${item.price}
+                                </p>
+
+                            </div>
+
+
+                            <div class="quantity">
+
+                                <button
+                                    onclick="changeQuantity(${index}, -1)">
+                                    -
+                                </button>
+
+                                <strong>
+                                    ${item.quantity}
+                                </strong>
+
+                                <button
+                                    onclick="changeQuantity(${index}, 1)">
+                                    +
+                                </button>
+
+                            </div>
+
+
+                            <strong>
+                                KSh ${itemTotal}
+                            </strong>
+
+
+                            <button
+                                class="remove-btn"
+                                onclick="removeFromCart(${index})">
+
+                                Remove
+
+                            </button>
+
+                        </div>
+
+                    `;
+
+                });
+
+            }
+
+
+            cartCount.textContent = totalQuantity;
+
+            cartTotal.textContent =
+                totalPrice.toLocaleString();
+
+        }
+
+
+        /* CHANGE QUANTITY */
+        function changeQuantity(index, change) {
+
+            cart[index].quantity += change;
+
+            if (cart[index].quantity <= 0) {
+
+                cart.splice(index, 1);
+
+            }
+
+            updateCart();
+
+        }
+
+
+        /* REMOVE PRODUCT */
+        function removeFromCart(index) {
+
+            cart.splice(index, 1);
+
+            updateCart();
+
+        }
+
+
+        /* CALCULATE TOTAL */
+        function calculateTotal() {
+
+            return cart.reduce(
+                (total, item) =>
+                    total + (item.price * item.quantity),
+                0
+            );
+
+        }
+
+
+        /* SHOW CART */
+        function showCart() {
+
+            document.getElementById("homePage")
+                .style.display = "none";
+
+            document.getElementById("checkoutSection")
+                .classList.remove("active");
+
+            document.getElementById("receiptSection")
+                .classList.remove("active");
+
+            document.getElementById("cartSection")
+                .classList.add("active");
+
+            updateCart();
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        /* SHOW HOME */
+        function showHome() {
+
+            document.getElementById("homePage")
+                .style.display = "block";
+
+            document.getElementById("cartSection")
+                .classList.remove("active");
+
+            document.getElementById("checkoutSection")
+                .classList.remove("active");
+
+            document.getElementById("receiptSection")
+                .classList.remove("active");
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        /* SCROLL TO PRODUCTS */
+        function scrollToProducts() {
+
+            showHome();
+
+            setTimeout(() => {
+
+                document.getElementById("products")
+                    .scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+            }, 100);
+
+        }
+
+
+        /* CHECKOUT */
+        function goToCheckout() {
+
+            if (cart.length === 0) {
+
+                alert(
+                    "Your cart is empty. Please add a product first."
+                );
+
+                return;
+            }
+
+
+            document.getElementById("homePage")
+                .style.display = "none";
+
+            document.getElementById("cartSection")
+                .classList.remove("active");
+
+            document.getElementById("receiptSection")
+                .classList.remove("active");
+
+            document.getElementById("checkoutSection")
+                .classList.add("active");
+
+
+            let total = calculateTotal();
+
+            document.getElementById("checkoutTotal")
+                .textContent = total.toLocaleString();
+
+            calculateBalance();
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        /* PAYMENT METHOD */
+        function changePaymentMethod() {
+
+            const method =
+                document.getElementById("paymentMethod")
+                    .value;
+
+            const mpesaInfo =
+                document.getElementById("mpesaInfo");
+
+            const amountPaid =
+                document.getElementById("amountPaid");
+
+
+            if (method === "M-Pesa") {
+
+                mpesaInfo.style.display = "block";
+
+            } else {
+
+                mpesaInfo.style.display = "none";
+
+            }
+
+
+            if (method === "Pay on Delivery") {
+
+                amountPaid.value = 0;
+
+                amountPaid.disabled = true;
+
+            } else {
+
+                amountPaid.disabled = false;
+
+            }
+
+
+            calculateBalance();
+
+        }
+
+
+        /* M-PESA DEMO */
+        function requestMpesaPayment() {
+
+            const phone =
+                document.getElementById("mpesaPhone")
+                    .value.trim();
+
+
+            if (phone === "") {
+
+                alert(
+                    "Please enter your M-Pesa phone number."
+                );
+
+                return;
+            }
+
+
+            alert(
+                "Demo only: An STK Push would be requested here. " +
+                "The customer would enter their M-Pesa PIN privately " +
+                "on their phone. Never collect the M-Pesa PIN on this website."
+            );
+
+        }
+
+
+        /* CALCULATE BALANCE */
+        function calculateBalance() {
+
+            const total = calculateTotal();
+
+            const amount =
+                Number(
+                    document.getElementById("amountPaid")
+                        .value
+                ) || 0;
+
+
+            document.getElementById("checkoutTotal")
+                .textContent =
+                total.toLocaleString();
+
+
+            document.getElementById("displayAmountPaid")
+                .textContent =
+                amount.toLocaleString();
+
+
+            let balance = total - amount;
+
+
+            if (balance < 0) {
+                balance = 0;
+            }
+
+
+            document.getElementById("balance")
+                .textContent =
+                balance.toLocaleString();
+
+        }
+
+
+        /* PLACE ORDER */
+        function placeOrder() {
+
+            if (cart.length === 0) {
+
+                alert("Your cart is empty.");
+
+                return;
+            }
+
+
+            const name =
+                document.getElementById("customerName")
+                    .value.trim();
+
+            const phone =
+                document.getElementById("customerPhone")
+                    .value.trim();
+
+            const email =
+                document.getElementById("customerEmail")
+                    .value.trim();
+
+            const county =
+                document.getElementById("customerCounty")
+                    .value;
+
+            const method =
+                document.getElementById("paymentMethod")
+                    .value;
+
+            const amountPaid =
+                Number(
+                    document.getElementById("amountPaid")
+                        .value
+                ) || 0;
+
+
+            /* VALIDATION */
+
+            if (!name ||
+                !phone ||
+                !email ||
+                !county ||
+                !method) {
+
+                alert(
+                    "Please complete all customer and payment details."
+                );
+
+                return;
+            }
+
+
+            if (method !== "Pay on Delivery" &&
+                amountPaid <= 0) {
+
+                alert(
+                    "Please enter the amount paid."
+                );
+
+                return;
+            }
+
+
+            const total = calculateTotal();
+
+            let balance =
+                total - amountPaid;
+
+
+            if (balance < 0) {
+                balance = 0;
+            }
+
+
+            let paymentStatus;
+
+
+            if (method === "Pay on Delivery") {
+
+                paymentStatus =
+                    "Pay on Delivery - Payment Pending";
+
+            } else if (amountPaid >= total) {
+
+                paymentStatus =
+                    "Payment Complete";
+
+            } else {
+
+                paymentStatus =
+                    "Partially Paid";
+
+            }
+
+
+            const orderNumber =
+                "BH" +
+                Date.now().toString().slice(-8);
+
+
+            const order = {
+
+                orderNumber: orderNumber,
+
+                date: new Date().toLocaleString(),
+
+                name: name,
+
+                phone: phone,
+
+                email: email,
+
+                county: county,
+
+                method: method,
+
+                items: [...cart],
+
+                total: total,
+
+                amountPaid: amountPaid,
+
+                balance: balance,
+
+                status: paymentStatus
+
+            };
+
+
+            createReceipt(order);
+
+        }
+
+
+        /* CREATE RECEIPT */
+        function createReceipt(order) {
+
+            let productsHTML = "";
+
+
+            order.items.forEach(item => {
+
+                productsHTML += `
+
+                    <tr>
+
+                        <td>
+                            ${item.name}
+                        </td>
+
+                        <td>
+                            ${item.quantity}
+                        </td>
+
+                        <td>
+                            KSh ${item.price.toLocaleString()}
+                        </td>
+
+                        <td>
+                            KSh ${(item.price *
+                            item.quantity)
+                            .toLocaleString()}
+                        </td>
+
+                    </tr>
+
+                `;
+
+            });
+
+
+            document.getElementById("receiptDetails")
+                .innerHTML = `
+
+                    <div class="customer-details">
+
+                        <p>
+                            <strong>Order Number:</strong>
+                            ${order.orderNumber}
+                        </p>
+
+                        <p>
+                            <strong>Date:</strong>
+                            ${order.date}
+                        </p>
+
+                        <p>
+                            <strong>Name:</strong>
+                            ${order.name}
+                        </p>
+
+                        <p>
+                            <strong>Phone:</strong>
+                            ${order.phone}
+                        </p>
+
+                        <p>
+                            <strong>Email:</strong>
+                            ${order.email}
+                        </p>
+
+                        <p>
+                            <strong>County:</strong>
+                            ${order.county}
+                        </p>
+
+                        <p>
+                            <strong>Payment Method:</strong>
+                            ${order.method}
+                        </p>
+
+                    </div>
+
+
+                    <table class="receipt-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Product
+                                </th>
+
+                                <th>
+                                    Qty
+                                </th>
+
+                                <th>
+                                    Price
+                                </th>
+
+                                <th>
+                                    Total
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            ${productsHTML}
+
+                        </tbody>
+
+                    </table>
+
+
+                    <div class="receipt-total">
+
+                        <p>
+                            Total:
+                            KSh ${order.total.toLocaleString()}
+                        </p>
+
+                        <p>
+                            Amount Paid:
+                            KSh ${order.amountPaid.toLocaleString()}
+                        </p>
+
+                        <p>
+                            Balance:
+                            KSh ${order.balance.toLocaleString()}
+                        </p>
+
+                    </div>
+
+
+                    <div class="status">
+
+                        ${order.status}
+
+                    </div>
+
+
+                    <p style="text-align:center;">
+                        Thank you for shopping with Beauty Hub!
+                    </p>
+
+                `;
+
+
+            document.getElementById("homePage")
+                .style.display = "none";
+
+            document.getElementById("cartSection")
+                .classList.remove("active");
+
+            document.getElementById("checkoutSection")
+                .classList.remove("active");
+
+            document.getElementById("receiptSection")
+                .classList.add("active");
+
+
+            /* EMPTY CART AFTER ORDER */
+            cart = [];
+
+            updateCart();
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        /* PRINT RECEIPT */
+        function printReceipt() {
+
+            window.print();
+
+        }
+
+
+        /* SEARCH PRODUCTS */
+        function searchProducts() {
+
+            const search =
+                document.getElementById("searchInput")
+                    .value.toLowerCase()
+                    .trim();
+
+
+            const products =
+                document.querySelectorAll(".product-card");
+
+
+            products.forEach(product => {
+
+                const name =
+                    product.dataset.name.toLowerCase();
+
+
+                if (name.includes(search)) {
+
+                    product.style.display = "block";
+
+                } else {
+
+                    product.style.display = "none";
+
+                }
+
+            });
+
+        }
+
+
+        /* START CART */
+        updateCart();
+
+    </script>
+
+</body>
+</html>
